@@ -1,0 +1,18 @@
+# Use root/example as user/password credentials
+#To Execute go to docker-compose.yml folder and then execute this command "docker-compose up -d"
+#Para executar tem q entrar na pasta do docker compose e executar o comando docker-compose up -d;  
+version: '3.1'
+services:
+  mongo:
+    image: mongo
+    container_name: 'mongo_account'
+    #restart: always    
+    environment:
+      MONGO_INITDB_DATABASE: accountdb
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      #- ./init-mongo.js:/docker-entrypoint.initdb.d/init-mongo.js:ro
+      - ./accountdb-volume:/data-db
+    ports:
+      - 27017-27019:27017-27019
